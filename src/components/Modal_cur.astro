@@ -37,9 +37,10 @@
 			// var formEl = document.forms.form_tg;
 			// const phone = document.querySelector("#files"); // <input id="files" type="file" multiple />
 			var phone = document.getElementById("number").value;
-			var address = document.getElementById("name").value;
+			// var address = document.getElementById("name").value;
 
-			sendMessage("Телефон: " + phone + " \n Имя: " + name);
+			sendMessage(phone);
+			// sendMessage("Телефон: " + phone + " \n Имя: " + name);
 			// ym(94118630,'reachGoal','form_delivery');
 			document.getElementById("my_modal_1").close();
 			document.getElementById("my_modal_3").showModal()
@@ -133,7 +134,7 @@
 	</dialog>
 
 	<dialog id="my_modal_3" class="modal">
-		<form method="dialog" class="modal-box">
+		<form method="dialog" class="modal-box text-black ">
 			<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 			<h3 class="font-bold text-lg">Спасибо!</h3>
 
