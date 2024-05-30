@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+const images = await Astro.glob('../assets/gallery/*.{jpg,jpeg}');
+---
+
+<section class="container" id="gallery">
+    <!-- <h1>Наша команда</h1> -->
+    <p>
+        У нас есть все, чтобы почистить и починить твою обувь, и крутые мастера, которые могут не только вернуть твоей обуви прежний вид, но и сделать ее моднее и стильнее.
+    </p>
+
+    <div class="gallery columns-3xs gap-4 ">
+        {
+            images.map((image) => (
+            <Image src={image.default} alt="" height={1200} />
+            ))
+        }
+    </section>
+
+    <style lang="scss">
+        .gallery {
+            img {
+                border-radius: 0.5rem;
+                width: 100%;
+                height: fit-content;
+                margin-bottom: 1rem;
+                // margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+
+    <script>
+        import mediumZoom from "medium-zoom";
+        mediumZoom("img", {background: "var(--image-bg)", margin: 8})
+    </script>
+
+</div>

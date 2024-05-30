@@ -1,0 +1,68 @@
+---
+/*
+  This layout is used in
+  - pages/index.astro
+  - pages/blog.astro
+  - pages/projects.astro
+*/
+
+// Import the global.css file here so that it is included on
+import "../styles/global.css";
+// import "./SofiaSansSemiCondensed-BlackItalic.ttf"
+import "../styles/regular.min.css";
+import "../styles/fontawesome.min.css";
+import "../styles/brands.min.css";
+
+// import GoogleFont from "./GoogleFont.astro";
+// import FontAwesome from "./FontAwesome.astro";
+import ThemeScript from "./ThemeScript.astro";
+import Favicon from "./Favicon.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html class="theme-bubblegum" data-theme="cyberpunk" lang="en">
+  <head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="
+    script-src 'self' 'unsafe-inline' *.yandex.ru *.yastatic.net yastatic.net *.googleapis.com;
+    "> -->
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="Blogster" />
+    <Favicon />
+    <slot name="meta" />
+    <!-- <GoogleFont /> -->
+    <ThemeScript />
+    <!-- <FontAwesome /> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&family=Sofia+Sans+Semi+Condensed:ital,wght@1,1000&display=swap" rel="stylesheet"> -->
+  </head>
+
+  <body class="min-h-screen">
+    <Header />
+    <main id="main">
+      <slot name="main" />
+    </main>
+    <Footer />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&family=Sofia+Sans+Semi+Condensed:ital,wght@1,1000&display=swap");
+      body {
+        display: grid;
+        grid-template-areas:
+          "header"
+          "main"
+          "footer";
+        grid-template-rows: max-content minmax(0, 1fr) 5rem;
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        grid-area: main;
+      }
+    </style>
+  </body>
+</html>

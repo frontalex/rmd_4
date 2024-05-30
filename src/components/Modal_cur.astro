@@ -1,0 +1,298 @@
+<script>
+	import IMask from 'imask';
+	// new PhoneMaskInputRus('input[data-tel-input]');
+	var element = document.getElementById('number');
+	var maskOptions = {
+		mask: '+{7}0000000000',
+		// lazy: false
+
+	};
+	var mask = IMask(element, maskOptions);
+
+	let tg = {
+		token: "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus", // Your bot's token that got from @BotFather
+		chat_id: "-1001332819296", // The user's(that you want to send a message) telegram chat id
+	};
+	const form = document.querySelectorAll("form.form");
+	function sendMessage(text) {
+		const url = `https://api.telegram.org/bot${tg.token}/sendMessage`; // The url to request
+
+		const obj = {
+			chat_id: tg.chat_id, // Telegram chat id
+			// parse_mode: 'html', // разметка сообщений вкл (чтобы использовать *жирный текст*)
+			text: text, // The text to send
+		};
+
+		const xht = new XMLHttpRequest();
+		xht.open("POST", url, true);
+		xht.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		xht.send(JSON.stringify(obj));
+		// xht.send(obj);
+	}
+	// form.addEventListener("submit", function (e) { // прослушиваем форму
+		document.getElementById("form_tg").addEventListener("submit", function (e) {
+			e.preventDefault();
+			var data = new FormData(); // вместо serialize на jQuery
+
+			// var formEl = document.forms.form_tg;
+			// const phone = document.querySelector("#files"); // <input id="files" type="file" multiple />
+			var phone = document.getElementById("number").value;
+			var address = document.getElementById("name").value;
+
+			sendMessage("Телефон: " + phone + " \n Имя: " + name);
+			// ym(94118630,'reachGoal','form_delivery');
+			document.getElementById("my_modal_1").close();
+			document.getElementById("my_modal_3").showModal()
+		});
+		document.getElementById("close_btn").addEventListener("click", function (e) {
+			e.preventDefault();
+			document.getElementById("my_modal_1").close();
+
+		})
+	</script>
+
+	<!-- <script>
+		const TOKEN = '6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus'; // токен от BotFather
+		const CHAT_ID = '-945790505'; // chat_id для телеграм
+
+		var form = document.querySelector('.form'); // находим в DOM нашу лид-форму
+		form.addEventListener("submit", function (e) { // прослушиваем форму
+			e.preventDefault(); // перехватываем стандартный ответ
+			data = new FormData(this); // вместо serialize на jQuery
+			sendMsg(data); // передаём данные из формы на отправку
+		})
+
+		function sendMsg(data) {
+			var url = 'https://api.telegram.org/bot' + TOKEN + '/sendMessage'; // токен бота
+			var body = JSON.stringify({ // склеиваем объект в JSON строку
+				chat_id: CHAT_ID,
+				parse_mode: 'Markdown', // разметка сообщений вкл (чтобы использовать *жирный текст*)
+				text: '\n\n*Адресс:* ' + data.get("address") + '\n*Телефон:* ' + data.get("number") + '\n*Откуда:* [' + window.location.href + '](' + window.location.href + ')'
+			});
+			var xhr = new XMLHttpRequest(); // инициализируем AJAX запрос
+			xhr.open('POST', url, true); // отправляем наше сообщение методом POST на сервак телеги
+			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8'); // на всякий случай, оповестим телеграм, что отправили JSON
+			xhr.send(body);
+		}
+	</script> -->
+	<dialog id="my_modal_1" class="modal">
+		<form class="form modal-box gap-4 grid" id="form_tg" name="tg" method="dialog" >
+			<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" id="close_btn">✕</button>
+
+			<div class="flex justify-between items-center">
+
+				<h3 class="font-bold text-xl">Оформить доставку</h3>
+				<!-- <div class="modal-action">
+					<button class="btn btn-circle btn-outline">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+					</button>
+				</div> -->
+
+			</div>
+			<ul class="text-xs text-left w-full">
+				<li>Бесплатная доставка если адрес в шаговой доступности от метро 10-15 минут.</li>
+				<li>Согласуем стоимость и объем работ</li>
+				<li>Приедем в удобное время и место</li>
+				<!-- <li>Оставим квитанции с описанием изделий и работ</li> -->
+				<li>Доставим готовые изделия обратно</li>
+				<!-- <li>Оплата после того, как вы получите результат</li> -->
+			</ul>
+
+			<input
+			id="name"
+			name="name"
+			type="text"
+			placeholder="Имя"
+			class="input input-primary input-lg w-full max-w-xs"
+			autofocus
+			/>
+			<input
+			id="number"
+			name="number"
+			type="text"
+			placeholder="Номер телефона"
+			class="input input-primary input-lg w-full max-w-xs"
+			/>
+			<input
+			type="submit"
+			value="Отправить"
+			class="btn btn-outline btn-lg max-w-xs btn-primary"
+			id="myBtn"
+			/>
+			<p class="text-slate-500">
+				Нажимая кнопку «Отправить», я даю свое согласие на обработку моих
+				персональных данных, в соответствии с Федеральным законом от 27.07.2006
+				года №152-ФЗ «О персональных данных», на условиях и для целей,
+				определенных в Согласии на обработку персональных данных
+			</p>
+		</form>
+
+		<form method="dialog" class="modal-backdrop">
+			<button>close</button>
+		</form>
+	</dialog>
+
+	<dialog id="my_modal_3" class="modal">
+		<form method="dialog" class="modal-box">
+			<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+			<h3 class="font-bold text-lg">Спасибо!</h3>
+
+			<p class="py-4">Ваша заявка принята! С вами свяжуться в ближайшее время</p>
+		</form>
+	</dialog>
+	<!-- <script>
+		let tg = {
+			token: "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus", // Your bot's token that got from @BotFather
+			chat_id: "-945790505" // The user's(that you want to send a message) telegram chat id
+		}
+		// var textValue=document.getElementById("number").value;
+		const form = document.querySelectorAll('form.form');
+		// var data = new FormData();
+		const name = data.get("number");
+		function sendMessage(text)
+		{
+			const url = `https://api.telegram.org/bot${tg.token}/sendMessage` // The url to request
+
+			const obj = {
+				chat_id: tg.chat_id, // Telegram chat id
+				text: text // The text to send
+			};
+
+			const xht = new XMLHttpRequest();
+			xht.open("POST", url, true);
+			xht.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+			xht.send(JSON.stringify(obj));
+		}
+		// var country = document.querySelector('input[name="number"]').value;
+
+
+		// Now you can send any text(even a form data) by calling sendMessage function.
+		// For example if you want to send the 'hello', you can call that function like this:
+		document.getElementById("myBtn").addEventListener("click", function(e) {
+			e.preventDefault();
+
+			sendMessage(name);
+		})
+	</script> -->
+
+	<!-- <script>
+		document.getElementById("myBtn").addEventListener("click", function(e) {
+			e.preventDefault();
+
+			var fname = document.querySelector('input[name="address"]').value;
+			var country = document.querySelector('input[name="number"]').value;
+
+			var message = fname+country;
+
+			var token = "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus";
+			var chat_id =-945790505;
+			var url = 'https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}text=${message}&parse_mode=html';
+
+			var oReq = new XMLHttpRequest();
+			oReq.open("GET", url, true);
+			oReq.send();
+
+			alert("Message sent");
+		});
+	</script> -->
+
+	<!-- <script>
+		var chat_id = -945790505; // replace with yours
+		// var enc_data = "This is my default text";
+		var token = "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus"; // from botfather
+		var form = document.querySelector('#form_tg'); // находим в DOM нашу лид-форму
+		var data = new FormData(this);
+
+		form_tg.onsubmit = async (e) => {
+			e.preventDefault();
+			sendMsg(data); // передаём данные из формы на отправку
+
+
+
+			// var blob = new Blob([enc_data], { type: 'plain/text' });
+		}
+
+		var formData = new FormData(form_tg);
+		formData.append('chat_id', chat_id);
+		formData.append('text', data);
+		// formData.append('document', blob, 'document.txt');
+		function sendMsg(data) {
+			var request = new XMLHttpRequest();
+			request.open('POST', `https://api.telegram.org/bot${token}/sendMessage`);
+			request.send(formData);
+
+		}
+
+	</script> -->
+
+	<!-- <script>
+		var form = document.querySelector('.form'); // находим в DOM нашу лид-форму
+
+		form.onsubmit = async (e) => {
+			e.preventDefault();
+
+			let response = await fetch('https://api.telegram.org/bot' + TOKEN + '/sendMessage'+'&chat_id=-945790505', {
+				method: 'POST',
+				body: new FormData(form)
+			});
+
+			let result = await response.json();
+
+			alert(result.message);
+		};
+	</script> -->
+
+	<!-- <script>
+		var chat_id = -945790505; // replace with yours
+		var enc_data = "This is my default text";
+		var token = "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus"; // from botfather
+
+		var blob = new Blob([enc_data], { type: 'plain/text' });
+
+		var formData = new FormData();
+		formData.append('chat_id', chat_id);
+		formData.append('document', blob, 'document.txt');
+
+		var request = new XMLHttpRequest();
+		request.open('POST', `https://api.telegram.org/bot${token}/sendDocument`);
+		request.send(formData);
+	</script> -->
+
+	<!-- <script>
+		var token = "6266286923:AAG6NtIc9ODS5vjxf3fCD1XH_809noRAyus";
+		var chat_id = -945790505;
+		var url = 'https://api.telegram.org/bot${token}/sendMessage?text=Привет мир?chat_id=${chat_id}';
+
+		var o = new XMLHttpRequest(),
+		telegram_bot_token = "xxxxxxxxxxxxxx";
+		o.open(
+		"POST",
+		"https://api.telegram.org/bot" + telegram_bot_token + "/sendMessage"
+		),
+		o.setRequestHeader("Content-Type", "application/json"),
+		o.send(formdata);
+	</script> -->
+
+	<style>
+		ul>li::before {
+			color:red !important;
+		}
+		li,
+		p {
+			@apply text-xs pl-0 mb-0 text-left;
+		}
+		ul {
+			@apply pl-0;
+		}
+
+		.modal-box {
+			background-color: white;
+			border-radius: 1rem;
+    border-color: red;
+    border-width: 2px;
+		}
+		.input-primary {
+			background-color: white;
+
+		}
+	</style>

@@ -1,0 +1,114 @@
+---
+import { Image } from "astro:assets";
+
+import Nav from "./Nav.astro";
+import DarkModeToggle from "./DarkModeToggle.astro";
+// import { Image, Picture } from '@astrojs/image/components';
+// import Logo from './public/rmdlogo.svg'
+import Logo from '../components/Logo.astro'
+
+// import Svg from "@jasikpark/astro-svg-loader";
+
+// import { globSVG } from '@foxpro/astro-svg-components'
+import MobNav from './MobNav.astro'
+
+---
+
+<MobNav />
+<header class="fixed w-full bg-white/40 dark:bg-black/20  backdrop-blur z-40 h-20 flex text-sm">
+  <div class="headin container self-center	">
+   <!-- {Logo} -->
+  <a href="#intro" class="unset">
+    <Logo />
+  </a>
+    <!-- <Fragment set:html={Logo} /> -->
+    <!-- <img src={Logo.src} alt="image description" class="h-24"/> -->
+    <!-- <Svg
+    src={import("../assets/rmdlogo.svg")}
+    aria-label="Cool illustration of an abstract nebula"
+  /> -->
+
+    <a
+    class="unset absolute z-10 left-[50%] -top-[100rem] translate-x-[-50%] bg-white text-black px-8 py-2 focus:top-[initial]"
+    href="#main"
+    >
+    Skip to content
+  </a>
+  <nav class="hidden lg:inline">
+    <div class="text-text-bold">
+      <ul class="unset flex gap-4 [&>li]:p-0 text-center justify-center	items-center">
+        <Nav />
+
+      </ul>
+    </div>
+  </nav>
+
+  <div
+  class="justify-self-end flex items-center content-center text-text-bold text-sm w-full gap-x-3 justify-end md:pr-4 pl-5"
+  >
+  <a
+  class="but_menu unset  from-rose-400 to-indigo-600 dark:bg-none  dark:hover:text-rose-600"
+  href="https://www.instagram.com/rmd_kicks/"
+  target="_blank"
+  >
+  <i class="fa-brands fa-instagram text-3xl lg:text-base" aria-hidden="true" title="insta"></i>
+  <span>IG</span>
+</a>
+<a
+class="but_menu unset from-cyan-600 to-cyan-500"
+href="https://t.me/rmdkicks"
+target="_blank"
+>
+<i class="fa-brands fa-telegram text-3xl lg:text-base" aria-hidden="true" title="tg"></i>
+<span>TG</span>
+</a>
+<a
+class="but_menu unset from-emerald-600 to-green-400"
+href="https://api.whatsapp.com/send?phone=79917048551"
+target="_blank"
+>
+<i class="fa-brands fa-whatsapp text-3xl lg:text-base" aria-hidden="true" title="tg"></i>
+<span>WA</span>
+</a>
+<a
+class="but_menu unset from-blue-600 to-blue-400"
+href="https://vk.com/rmd_kicks"
+target="_blank"
+>
+<i class="fa-brands fa-vk text-3xl lg:text-base" aria-hidden="true" title="vk"></i>
+<span>VK</span>
+</a>
+</div>
+<div class="invisible md:visible w-0 md:w-auto">
+
+  <DarkModeToggle />
+</div>
+
+<nav class="lg:hidden ml-4 text-3xl">
+  <button id="mobile-menu-open">
+    <i class="fa-regular fa-bars" aria-hidden="true" title="Open mobile menu"
+    ></i>
+    <span class="fa-sr-only">Open mobile menu</span>
+  </button>
+
+</nav>
+
+</div>
+</header>
+
+<style>
+  .headin {
+    grid-area: header;
+    display: grid;
+    align-items: center;
+    grid-template-columns: minmax(0,max-content) minmax(0,1fr) minmax(0,max-content) minmax(0,max-content);
+  }
+  .but_menu {
+    @apply rounded-sm transition-[background-size] duration-150 ease-in-out bg-left-bottom bg-[length:0%_55%] hover:bg-[length:100%_55%] bg-no-repeat bg-gradient-to-r  dark:bg-none dark:hover:text-primary-blue
+  }
+
+  span {
+    @apply text-sm hidden xl:inline
+  }
+</style>
+

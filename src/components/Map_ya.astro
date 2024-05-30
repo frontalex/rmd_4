@@ -1,0 +1,86 @@
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=9bffbfc1-7b32-4aaf-8b9a-75c3bbb9488f" type="text/javascript"></script>
+
+<script>
+	ymaps.ready(init);
+
+	function init() {
+		var myMap = new ymaps.Map("map", {
+			center: [55.737998, 37.588921],
+			zoom: 15
+		}, {
+			searchControlProvider: 'yandex#search'
+		}),
+
+		// Создаем геообъект с типом геометрии "Точка".
+		myGeoObject = new ymaps.GeoObject({
+			// Описание геометрии.
+			geometry: {
+				type: "Point",
+				coordinates: [55.738621, 37.588794]
+			},
+			// Свойства.
+			properties: {
+				// Контент метки.
+				iconContent: 'RMD',
+				hintContent: 'Химчистка'
+			}
+		}, {
+			// Опции.
+			// Иконка метки будет растягиваться под размер ее содержимого.
+			preset: 'islands#blackStretchyIcon',
+			// Метку можно перемещать.
+			draggable: true
+		})
+
+		myMap.geoObjects
+		.add(myGeoObject)
+
+		myMap.behaviors.disable('scrollZoom');
+
+
+	}
+</script>
+
+<section class="mb-0" id="contacts">
+	<h1>
+		Где нас найти
+	</h1>
+</section>
+<div class="w-full mx-auto flex mb-28 flex-col lg:flex-row overflow-hidden">
+	<div class="w-full lg:w-1/2 mb-8">
+
+		<div class="container text-center md:text-left flex flex-col items-start gap-y-3">
+
+
+			<div class="inline-block">
+				<i class="fa-regular fa-location-dot inline"></i>
+				<p class="inline">Москва, Зубовский бул., 16-20с1, п.5   </p>
+				<br>
+				<p class="font-light	text-sm ">
+					Здесь можно сдать или забрать обувь самовывозом. <br>
+					Пожалуйста, запишитесь заранее на удобное для вас время через мессенджер или по телефону, чтобы мы могли гарантировать быстрое и качественное обслуживание без ожидания.				</p>
+			</div>
+			<p class="font-light	text-sm inline-block">
+				Режим работы: <br>
+				Ежедневно с 12:00 до 20:00
+			</p>
+			<div class="inline-block">
+				<i class="fa-regular fa-phone"></i>
+				<a href="tel:+79917048551">+7 (991) 704-85-51</a>
+			</div>
+		</div>
+
+	</div>
+	<div class="w-full lg:w-1/2">
+		<div id="map" class="w-full h-96"></div>
+	</div>
+
+</div>
+
+<style>
+	.container > *, .container h1 {
+		text-align: left;
+		margin-bottom: 0;
+	}
+</style>

@@ -1,0 +1,66 @@
+---
+---
+<div class="intro-bg h-screen bg-[url('../assets/rmd_intro_bg.webp')]" id="intro">
+  <div class="
+  flex items-center h-screen bg-gradient-to-tr
+  dark:from-black  dark:to-black/0
+  from-white via-white/50 to-white/0
+  ">
+  <div class="container grid gap-y-9 justify-items-center md:justify-items-start mt-10">
+    <h1 class="text-white  md:text-4xl text-xl uppercase mb-0">
+      <span class="bg-red-600 ">
+        Химчистка обуви
+      </span>
+      <span class="bg-red-600 ">
+        с бесплатной доставкой
+      </span>
+    </h1>
+    <h2 class="text-white text-xs md:text-md  items-center md:items-start font-light ">
+      <span>
+        Работаем с брендовыми товарами по доступным ценам.
+      </span>
+      <span>
+        Мы приедем к вам за обувью, и вернем ее чистой и отремонтированной.
+      </span>
+      <span>
+        Вы можете спокойно заниматься своими делами, а мы позаботимся о вашей обуви.
+      </span>
+    </h2>
+    <input type="button" value="Вызвать курьера" class="btn btn-outline btn-primary btn-lg max-w-xs" onclick="my_modal_1.showModal()">
+
+    <!-- <button class="btn btn-secondary">Button</button> -->
+
+
+    <!-- <button class="btn btn-secondary  btn-lg max-w-max  ">Заказать курьера</button> -->
+
+  </div>
+</div>
+</div>
+
+<style>
+  .intro-bg {
+    @apply bg-center bg-cover;
+  }
+
+  h1 {
+    @apply tracking-wider;
+    font-weight: 1000;
+    font-style: italic;
+  }
+
+  h1, h2 {
+    @apply flex  flex-col items-center md:items-start;
+  }
+  h2 span {
+    @apply  bg-origin-padding bg-auto leading-snug p-1 bg-repeat bg-clip-padding  max-w-fit  text-center md:text-left bg-black/70  px-4;
+  }
+
+  h1 span {
+    @apply px-4
+  }
+
+  [data-theme="cyberpunk"] .btn {
+    border-width: 2px;
+    border-color: black !important;
+  }
+</style>

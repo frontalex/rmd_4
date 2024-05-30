@@ -1,0 +1,91 @@
+<section class="container mt-12" id="advantages">
+	<h1>
+		Преимущества
+	</h1>
+
+		<ul class="grid grid-cols-1 md:grid-cols-2 justify-items-center" >
+			<li>
+				<h2>
+					Бесплатная доставка
+				</h2>
+				<p>
+					Бесплатно в пределах МКАД. За пределами МКАД рассчитаем индивидуально
+				</p>
+			</li>
+			<li>
+				<h2>
+					Команда профессионалов
+				</h2>
+				<p>
+					Квалифицированные мастера под руководством экспертного технолога
+				</p>
+			</li>
+			<li>
+				<h2>
+					Работа с брендами
+				</h2>
+				<p>
+					Мы знаем особенности и требования брендовых кроссовок
+				</p>
+			</li>
+			<li>
+				<h2>
+					Поддержка в режиме онлайн
+				</h2>
+				<p>
+					Мы на связи с 12 до 20 каждый день. Отправим фото готового заказа перед доставкой
+				</p>
+			</li>
+			<li>
+				<h2>
+					Цены без сюрпризов
+				</h2>
+				<p>
+					Мы не повышаем стоимость работ без вашего соглашения.
+				</p>
+			</li>
+			<li>
+				<h2>
+					Химия из Европы
+				</h2>
+				<p>
+					Мы применяем безвредные и высококачественные составы из Италии и Франции.
+				</p>
+			</li>
+		</ul>
+	</section>
+
+<style lang="scss">
+
+	li {
+		@apply mt-0 max-w-xs;
+		p {
+			@apply  text-left text-sm;
+		}
+		h2 {
+			@apply text-lg  text-red-600;
+		}
+	}
+	ul {
+		--icon-space: 0.2rem;
+		list-style: none;
+  padding: 0;
+}
+
+li {
+  padding-left: var(--icon-space);
+}
+
+li:before {
+  content: "\f00c" !important; /* FontAwesome Unicode */
+  font-family: 'Font Awesome 6 Pro';
+  display: inline-block;
+  margin-left: calc( var(--icon-space) * -1 );
+  width: var(--icon-space);
+	color: #bef264 !important;
+}
+section p {
+	@apply ml-0
+}
+
+</style>

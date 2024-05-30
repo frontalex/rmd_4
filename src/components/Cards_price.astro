@@ -1,0 +1,110 @@
+---
+// import { Image } from "astro:assets";
+// const images = await Astro.glob('../assets/cards/*.{jpg,jpeg}');
+// style="background-image: url(./cards/DSC_2194-1.jpg);"
+---
+<!-- <Image src={myImage} alt="" class="my-class" /> -->
+<section class="container pt-28" id="services">
+	<h1>
+		Услуги
+	</h1>
+	<p>
+		Мы ответственно подходим к ремонту ваших вещей и обеспечиваем вам гарантию на наши услуги. Вы можете вернуться к нам в течение месяца, если вы не удовлетворены результатом, и мы исправим все ошибки без дополнительной оплаты.
+	</p>
+	<section class="grid lg:grid-cols-3  grid-cols-1  gap-8 mt-10">
+
+		<article class="group  bg-[url('../assets/cards/IMG_4672.JPG')]" >
+			<div class="card1">
+				<h1 class="text-white text-3xl mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300">
+					Химчистка обуви
+				</h1>
+				<h2>
+					от 2000 ₽
+				</h2>
+				<div class="w-16 h-2 bg-rose-600 rounded-full mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300"></div>
+				<p class="opacity-0 text-white text-xl group-hover:opacity-80 transform duration-500 prose">
+					<ul>
+						<li>Химчистка обуви из любых материалов
+						</li>
+						<li>Выведение пятен и реагентов
+						</li>
+						<li>Устранение последствий домашней чистки
+						</li>
+					</ul>
+				</p>
+			</div>
+		</article>
+
+
+		<article class="group bg-[url('../assets/cards/IMG_2045.PNG')]">
+			<div class="card1">
+				<h1 class="text-white text-3xl mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300">
+					Реставрация обуви
+				</h1>
+				<h2 class="text-white">от 1200 ₽</h2>
+				<div class="w-16 h-2 bg-rose-600 rounded-full mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300">
+				</div>
+				<p class="opacity-0 text-white text-xl group-hover:opacity-80 transform duration-500">
+					<ul>
+						<li>Реставрация кожи и покраска замши
+						</li>
+						<li>Устранение задиров, царапин и потертостей
+						</li>
+						<li>Восстановление цвета
+						</li>
+					</ul>
+				</p>
+			</div>
+		</article>
+
+		<article class="group bg-[url('../assets/cards/IMG_4673.JPG')]">
+			<div class="card1">
+				<h1 class="text-white text-3xl mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300">
+					Сумки <br> и аксессуары
+				</h1>
+				<h2 class="text-white">от 1500 ₽</h2>
+				<div class="w-16 h-2 bg-rose-600 rounded-full mb-5 transform translate-y-20 group-hover:translate-y-0 duration-300">
+				</div>
+				<p class="opacity-0 text-white text-xl group-hover:opacity-80 transform duration-500">
+					<ul>
+						<li>Химчистка и реставрация сумок
+						</li>
+						<li>Восстановление ручек, урезов и фурнитуры
+						</li>
+						<li>Покраска кожаных изделий
+						</li>
+					</ul>
+				</p>
+			</div>
+		</article>
+
+
+	</section>
+</section>
+
+
+<style>
+	li{
+		@apply opacity-0 text-white text-xs group-hover:opacity-100 transform duration-500 prose;
+	}
+	li::before {
+		content : "🧼" !important
+	}
+	h2 {
+		@apply opacity-0 text-white  group-hover:opacity-100 transform duration-500
+	}
+	article {
+		@apply mx-auto  bg-cover bg-center transform duration-500 hover:-translate-y-2 cursor-pointer  rounded-3xl h-96 w-full
+	}
+	.card1 {
+		@apply bg-black bg-opacity-20  px-10 flex flex-wrap flex-col hover:bg-opacity-75 transform duration-300 pb-9 h-full items-center justify-center rounded-3xl text-white
+	}
+	section article:nth-child(2) ul li::before {
+		content : "👟" !important
+	}
+	section article:nth-child(3) ul li::before {
+		content : "👜" !important
+	}
+
+
+</style>
