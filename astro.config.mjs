@@ -31,19 +31,22 @@ if (isBuild) {
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    assets: true
-   },
+  // Удалить experimental: { assets: true } - может вызывать проблемы
+  // experimental: {
+  //   assets: true
+  // },
   // output: "hybrid",
   server: {
     port: SERVER_PORT
   },
   site: BASE_URL,
-  integrations: [sitemap(), tailwind({
-    config: {
+  integrations: [
+    sitemap(),
+    tailwind({
+      // Простая конфигурация без сложностей
       applyBaseStyles: false
-    }
-  })
+    })
+    // Удаляем tailwind интеграцию и настраиваем вручную
   // image(),
   // astroSvgComnponents()
 ]

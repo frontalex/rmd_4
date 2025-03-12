@@ -1,0 +1,15 @@
+<script>
+  export const sendTelegramMessage = (token, chatId, message) => {
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const obj = {
+      chat_id: chatId,
+      text: message,
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.send(JSON.stringify(obj));
+    return true;
+  };
+</script>

@@ -3,7 +3,7 @@
 		Преимущества
 	</h1>
 
-		<ul class="grid grid-cols-1 md:grid-cols-2 justify-items-center" >
+		<ul class="advantages-list grid grid-cols-1 md:grid-cols-2 justify-items-center" >
 			<li>
 				<h2>
 					Бесплатная доставка
@@ -56,36 +56,28 @@
 	</section>
 
 <style lang="scss">
-
 	li {
 		@apply mt-0 max-w-xs;
 		p {
-			@apply  text-left text-sm;
+			@apply text-left text-sm;
 		}
 		h2 {
-			@apply text-lg  text-red-600;
+			@apply text-lg text-red-600;
 		}
 	}
-	ul {
-		--icon-space: 0.2rem;
+
+	/* Убираем старые стили для списка, так как они конфликтуют */
+	.advantages-list {
 		list-style: none;
-  padding: 0;
-}
+		padding: 0;
+	}
 
-li {
-  padding-left: var(--icon-space);
-}
+	/* Убираем конфликтующие стили с :before */
+	.advantages-list li:before {
+		content: none !important;
+	}
 
-li:before {
-  content: "\f00c" !important; /* FontAwesome Unicode */
-  font-family: 'Font Awesome 6 Pro';
-  display: inline-block;
-  margin-left: calc( var(--icon-space) * -1 );
-  width: var(--icon-space);
-	color: #bef264 !important;
-}
-section p {
-	@apply ml-0
-}
-
+	section p {
+		@apply ml-0
+	}
 </style>

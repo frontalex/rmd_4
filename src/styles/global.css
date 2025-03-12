@@ -3,8 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 h1 {
     @apply text-2xl mb-10;
 }
@@ -261,4 +259,87 @@ section {
 
 .navigation-wrapper {
     z-index: 0;
+}
+
+/* Улучшенные стили для галочек в преимуществах */
+.advantages-list li::before {
+  content: "✓" !important;
+  color: #ff0000;
+  position: absolute;
+  left: -1.5rem;  /* Отодвигаем галочку влево */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.advantages-list li {
+  position: relative;
+  padding-left: 0;  /* Убираем левый отступ, чтобы текст был выровнен */
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;  /* Добавляем отступ слева для компенсации */
+}
+
+/* Обновленные стили для всех кнопок */
+.btn {
+  font-family: 'Sofia Sans Semi Condensed', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: white !important;
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+  box-shadow: none !important; /* Убираем тень */
+  --tw-shadow: none !important; /* Для Tailwind */
+  --tw-shadow-colored: none !important; /* Для Tailwind */
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #cc0000 !important;
+  border-color: #cc0000 !important;
+  box-shadow: none !important;
+}
+
+/* Стили для outline кнопок */
+.btn-outline {
+  background-color: transparent !important;
+  color: #ff0000 !important;
+  border-color: #ff0000 !important;
+  box-shadow: none !important;
+}
+
+.btn-outline:hover {
+  background-color: #ff0000 !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+/* Стили для focus состояния */
+.btn:focus, .btn-outline:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Переопределение стилей из daisyUI */
+.btn-primary,
+.btn-secondary,
+.btn-accent,
+.btn-info,
+.btn-success,
+.btn-warning,
+.btn-error {
+  background-color: #ff0000 !important;
+  border-color: #ff0000 !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+/* Переопределение для hover эффектов всех вариантов кнопок */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-accent:hover,
+.btn-info:hover,
+.btn-success:hover,
+.btn-warning:hover,
+.btn-error:hover {
+  background-color: #cc0000 !important;
+  border-color: #cc0000 !important;
 }

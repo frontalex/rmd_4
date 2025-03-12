@@ -1,5 +1,6 @@
 ---
-import { Image } from "astro:assets";
+// Заменяем импорт Image из astro:assets на обычный img
+// import { Image } from "astro:assets";
 const images = await Astro.glob('../assets/gallery/*.{jpg,jpeg}');
 ---
 
@@ -9,13 +10,13 @@ const images = await Astro.glob('../assets/gallery/*.{jpg,jpeg}');
         У нас есть всё для чистки и ремонта твоей обуви. Наши мастера не только вернут обуви её первоначальный вид, но и придадут ей свой особенный стиль!
     </p>
 
-    <div class="gallery columns-3xs gap-4 ">
+    <div class="gallery columns-3xs gap-4">
         {
             images.map((image) => (
-            <Image src={image.default} alt="" height={1200} />
+                <img src={image.default.src} alt="" loading="lazy" />
             ))
         }
-    </section>
+    </div>
 
     <style lang="scss">
         .gallery {
@@ -31,7 +32,7 @@ const images = await Astro.glob('../assets/gallery/*.{jpg,jpeg}');
 
     <script>
         import mediumZoom from "medium-zoom";
-        mediumZoom("img", {background: "var(--image-bg)", margin: 8})
+        mediumZoom("img:not(img-comparison-slider img)", {background: "var(--image-bg)", margin: 8})
     </script>
 
-</div>
+</section>

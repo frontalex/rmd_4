@@ -1,373 +1,223 @@
 ---
-// import { Image } from "astro:assets";
-// const slides = await Astro.glob('../assets/After/*.{jpg,jpeg}');
+// Используем glob импорт для получения всех изображений "до"
+// const beforeImages = await Astro.glob('/public/after2/*_1.jpg');
+// Массив для хранения пар изображений
+const imagePairs = [];
+
+// Формируем пары изображений (до/после)
+for (let i = 1; i <= 8; i++) {
+    imagePairs.push({
+        before: `/after2/${i}_1.jpg`,
+        after: `/after2/${i}_2.jpg`,
+    });
+}
 ---
-<script>
-	import 'keen-slider/keen-slider.min.css'
-	import KeenSlider from 'keen-slider'
 
-	// var slider = new KeenSlider("#my-keen-slider")
-	import ImageCompare from "image-compare-viewer";
-	const viewers = document.querySelectorAll(".image-compare");
-	const options = {
+<section class="container mx-auto px-4 py-12" id="gallery">
+	<h1 class="text-4xl font-bold text-center mb-4">Галерея работ</h1>
+	<p class="text-center max-w-2xl mx-auto mb-10">
+		Наша команда профессионалов готова решить любую сложную задачу. На этих фото вы можете оценить наши работы по чистке, ремонту и реставрации обуви.
+	</p>
 
-		// UI Theme Defaults
-
-		controlColor: "#ff0000",
-		// controlShadow: true,
-		// addCircle: false,
-		// addCircleBlur: true,
-
-		// // Label Defaults
-
-		// showLabels: false,
-		// labelOptions: {
-			// 	before: 'Before',
-			// 	after: 'After',
-			// 	onHover: false
-			// },
-
-			// // Smoothing
-
-			smoothing: true,
-			smoothingAmount: 300,
-
-			// // Other options
-
-			hoverStart: false,
-			// verticalMode: false,
-			// startingPoint: 50,
-			// fluidMode: true
-		};
-
-		viewers.forEach((element) => {
-			let view = new ImageCompare(element, options).mount();
-		});
-		import 'image-compare-viewer/dist/image-compare-viewer.min.css'
-		// import { Image } from "astro:assets";
-
-	</script>
-
-
-	<section class="container" id="gallery">
-		<h1>Галлерея работ</h1>
-		<p>
-			Примеры комплексной химчистки, реставрации и покраски кожи, подошвы, восстановления цвета замши и нубука.
-		</p>
-
-		<!-- <div class="gallery columns-1 md:columns-2 gap-4 gap-y-4"> -->
-			<div  id="my-keen-slider" class="keen-slider">
-				<div class="keen-slider__slide number-slide1">
-
-					<div class="image-compare ">
-						<img src="./after2/1_1.jpg" alt="" />
-						<img src="./after2/1_2.jpg" alt="" />
+	<!-- Swiper -->
+	<div class="swiper-container max-w-5xl mx-auto">
+		<div class="swiper">
+			<!-- Слайды -->
+			<div class="swiper-wrapper">
+				{/* Используем map для создания слайдов из массива пар изображений */}
+				{imagePairs.map((pair, index) => (
+					<div class="swiper-slide">
+						<img-comparison-slider hover value="50" slider-width="100%" slider-line-width="2" slider-line-color="#ff0000">
+							<img slot="first" src={pair.before} alt={`До ${index + 1}`} />
+							<img slot="second" src={pair.after} alt={`После ${index + 1}`} />
+						</img-comparison-slider>
 					</div>
-
-				</div>
-				<div class="keen-slider__slide number-slide2">
-					<div class="image-compare ">
-						<img src="./after2/2_1.jpg" alt="" />
-						<img src="./after2/2_2.jpg" alt="" />
-					</div>
-				</div>
-				<div class="keen-slider__slide number-slide3">
-					<div class="image-compare ">
-						<img src="./after2/3_1.jpg" alt="" />
-						<img src="./after2/3_2.jpg" alt="" />
-					</div>
-				</div>
-				<div class="keen-slider__slide number-slide4">
-					<div class="image-compare ">
-						<img src="./after2/4_1.jpg" alt="" />
-						<img src="./after2/4_2.jpg" alt="" />
-					</div>
-				</div>
-
-
-				<div class="keen-slider__slide number-slide5">
-					<div class="image-compare ">
-						<img src="./after2/5_1.jpg" alt="" />
-						<img src="./after2/5_2.jpg" alt="" />
-					</div>
-				</div>
-				<div class="keen-slider__slide number-slide6">
-					<div class="image-compare ">
-						<img src="./after2/6_1.jpg" alt="" />
-						<img src="./after2/6_2.jpg" alt="" />
-					</div>
-				</div>
-				<div class="keen-slider__slide number-slide7">
-					<div class="image-compare ">
-						<img src="./after2/7_1.jpg" alt="" />
-						<img src="./after2/7_2.jpg" alt="" />
-					</div>
-				</div>
-				<div class="keen-slider__slide number-slide7">
-					<div class="image-compare ">
-						<img src="./after2/8_1.jpg" alt="" />
-						<img src="./after2/8_2.jpg" alt="" />
-					</div>
-				</div>
-
+				))}
 			</div>
 
-		</section>
+			<!-- Пагинация (точки) -->
+			<div class="swiper-pagination"></div>
 
+			<!-- Стрелки навигации -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+	</div>
+</section>
 
-		<style is:inline>
-			.image-compare {
-				/* @apply mb-6; */
-			}
-			[class^="number-slide"],
-			[class*=" number-slide"] {
-				/* background: grey; */
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 50px;
-				color: #fff;
-				font-weight: 500;
-				height: 300px;
-				max-height: 100vh;
-			}
+<script>
+	// Импортируем библиотеки
+	import 'img-comparison-slider';
+	import 'img-comparison-slider/dist/styles.css';
 
-			/* .number-slide1 {
-				background: rgb(64, 175, 255);
-				background: linear-gradient(
-				128deg,
-				rgba(64, 175, 255, 1) 0%,
-				rgba(63, 97, 255, 1) 100%
-				);
-			}
+	// Импортируем Swiper и необходимые модули
+	import Swiper from 'swiper';
+	import { Navigation, Pagination, A11y } from 'swiper/modules';
 
-			.number-slide2 {
-				background: rgb(255, 75, 64);
-				background: linear-gradient(
-				128deg,
-				rgba(255, 154, 63, 1) 0%,
-				rgba(255, 75, 64, 1) 100%
-				);
-			}
+	// Импортируем CSS стили Swiper
+	import 'swiper/css';
+	import 'swiper/css/navigation';
+	import 'swiper/css/pagination';
 
-			.number-slide3 {
-				background: rgb(182, 255, 64);
-				background: linear-gradient(
-				128deg,
-				rgba(182, 255, 64, 1) 0%,
-				rgba(63, 255, 71, 1) 100%
-				);
-				background: linear-gradient(
-				128deg,
-				rgba(189, 255, 83, 1) 0%,
-				rgba(43, 250, 82, 1) 100%
-				);
-			}
+	// Инициализируем Swiper после загрузки DOM
+	document.addEventListener('DOMContentLoaded', function() {
+		// Инициализация обработчиков касаний для слайдеров сравнения
+		const comparisonSliders = document.querySelectorAll('img-comparison-slider');
+		comparisonSliders.forEach(slider => {
+			// Активация сразу при загрузке
+			slider.setAttribute('active', '');
+			slider.setAttribute('hover', '');
+			
+			// Активация при касании для поддержания состояния
+			slider.addEventListener('touchstart', (e) => {
+				const rect = slider.getBoundingClientRect();
+				const touchX = e.touches[0].clientX - rect.left;
+				const percent = Math.min(Math.max((touchX / rect.width) * 100, 0), 100);
+				slider.setAttribute('value', percent);
+				slider.setAttribute('active', '');
+				slider.setAttribute('hover', '');
+			}, { passive: true });
 
-			.number-slide4 {
-				background: rgb(64, 255, 242);
-				background: linear-gradient(
-				128deg,
-				rgba(64, 255, 242, 1) 0%,
-				rgba(63, 188, 255, 1) 100%
-				);
-			}
+			// Деактивация при окончании касания
+			slider.addEventListener('touchend', () => {
+				slider.setAttribute('hover', '');
+			}, { passive: true });
 
-			.number-slide5 {
-				background: rgb(255, 64, 156);
-				background: linear-gradient(
-				128deg,
-				rgba(255, 64, 156, 1) 0%,
-				rgba(255, 63, 63, 1) 100%
-				);
-			}
-			.number-slide6 {
-				background: rgb(64, 76, 255);
-				background: linear-gradient(
-				128deg,
-				rgba(64, 76, 255, 1) 0%,
-				rgba(174, 63, 255, 1) 100%
-				);
-			} */
+			// Предотвращение прокрутки страницы при использовании слайдера
+			slider.addEventListener('touchmove', () => {}, { passive: true });
+		});
 
-			.navigation-wrapper {
-				position: relative;
-			}
+		const swiper = new Swiper('.swiper', {
+			// Подключаем модули
+			modules: [Navigation, Pagination, A11y],
 
-			.dots {
-				display: flex;
-				padding: 10px 0;
-				justify-content: center;
-			}
+			// Основные настройки
+			slidesPerView: 1,
+			spaceBetween: 30,
+			loop: false,
 
-			.dot {
-				border: none;
-				width: 10px;
-				height: 10px;
-				background: #ff000049;
-				border-radius: 50%;
-				margin: 0 5px;
-				padding: 5px;
-				cursor: pointer;
-			}
+			// Настройки навигации
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
 
-			.dot:focus {
-				outline: none;
-			}
+			// Настройки пагинации (точек)
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
 
-			.dot--active {
-				background: #ff0000;
-			}
+			// Дополнительные настройки
+			grabCursor: true,
+			keyboard: {
+				enabled: true,
+			},
+			touchStartPreventDefault: false,
+			passiveListeners: true,
 
-			.arrow {
-				width: 30px;
-				height: 30px;
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				-webkit-transform: translateY(-50%);
-				fill: red;
-				cursor: pointer;
-			}
-			.arrow svg {
-				fill: red;
-
-				background: red;
-			}
-
-			.arrow--left {
-				left: 5px;
-				fill: "red";
-				background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='red' viewBox='0 0 24 24' %3E%3Cpath d='M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z' %3E%3C/path%3E%3C/svg%3E");
-			}
-
-			.arrow--right {
-				left: auto;
-				right: 5px;
-				background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg'  fill='red' viewBox='0 0 24 24' %3E%3Cpath d='M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z'%3E%3C/path%3E%3C/svg%3E");
-			}
-
-			.arrow--disabled.arrow--left {
-				background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='grey' viewBox='0 0 24 24' %3E%3Cpath d='M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z' %3E%3C/path%3E%3C/svg%3E");
-			}
-
-			.arrow--disabled.arrow--right {
-				background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' fill='grey' viewBox='0 0 24 24' %3E%3Cpath d='M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z'%3E%3C/path%3E%3C/svg%3E");
-			}
-			.keen-slider {
-				transition: height 0.3s;
-			}
-
-			.keen-slider__slide {
-				height: 100%
-			}
-			.icv__control {
-				z-index: 60;
-			}
-		</style>
-
-		<script >
-
-			// import { Carousel } from 'flowbite';
-			import 'keen-slider/keen-slider.min.css'
-			import KeenSlider from 'keen-slider'
-
-			function navigation(slider) {
-				let wrapper, dots, arrowLeft, arrowRight
-
-				function markup(remove) {
-					wrapperMarkup(remove)
-					dotMarkup(remove)
-					arrowMarkup(remove)
+			// Обработчики событий
+			on: {
+				init: function() {
+					document.body.style.overflow = 'auto';
+					document.documentElement.style.overflow = 'auto';
+				},
+				slideChange: function() {
+					document.body.style.overflow = 'auto';
+					document.documentElement.style.overflow = 'auto';
 				}
-
-				function removeElement(elment) {
-					elment.parentNode.removeChild(elment)
-				}
-				function createDiv(className) {
-					var div = document.createElement("div")
-					var classNames = className.split(" ")
-					classNames.forEach((name) => div.classList.add(name))
-					return div
-				}
-
-				function arrowMarkup(remove) {
-					if (remove) {
-						removeElement(arrowLeft)
-						removeElement(arrowRight)
-						return
-					}
-					arrowLeft = createDiv("arrow arrow--left")
-					arrowLeft.addEventListener("click", () => slider.prev())
-					arrowRight = createDiv("arrow arrow--right")
-					arrowRight.addEventListener("click", () => slider.next())
-
-					wrapper.appendChild(arrowLeft)
-					wrapper.appendChild(arrowRight)
-				}
-
-				function wrapperMarkup(remove) {
-					if (remove) {
-						var parent = wrapper.parentNode
-						while (wrapper.firstChild)
-						parent.insertBefore(wrapper.firstChild, wrapper)
-						removeElement(wrapper)
-						return
-					}
-					wrapper = createDiv("navigation-wrapper")
-					slider.container.parentNode.appendChild(wrapper)
-					wrapper.appendChild(slider.container)
-				}
-
-				function dotMarkup(remove) {
-					if (remove) {
-						removeElement(dots)
-						return
-					}
-					dots = createDiv("dots")
-					slider.track.details.slides.forEach((_e, idx) => {
-						var dot = createDiv("dot")
-						dot.addEventListener("click", () => slider.moveToIdx(idx))
-						dots.appendChild(dot)
-					})
-					wrapper.appendChild(dots)
-				}
-
-				function updateClasses() {
-					var slide = slider.track.details.rel
-					slide === 0
-					? arrowLeft.classList.add("arrow--disabled")
-					: arrowLeft.classList.remove("arrow--disabled")
-					slide === slider.track.details.slides.length - 1
-					? arrowRight.classList.add("arrow--disabled")
-					: arrowRight.classList.remove("arrow--disabled")
-					Array.from(dots.children).forEach(function (dot, idx) {
-						idx === slide
-						? dot.classList.add("dot--active")
-						: dot.classList.remove("dot--active")
-					})
-				}
-
-				slider.on("created", () => {
-					markup()
-					updateClasses()
-				})
-				slider.on("optionsChanged", () => {
-					console.log(2)
-					markup(true)
-					markup()
-					updateClasses()
-				})
-				slider.on("slideChanged", () => {
-					updateClasses()
-				})
-				slider.on("destroyed", () => {
-					markup(true)
-				})
 			}
+		});
+	});
+</script>
 
-			var slider = new KeenSlider("#my-keen-slider", {
-				drag: false
-			}, [navigation])
+<style>
+	/* Стили для img-comparison-slider */
+	img-comparison-slider {
+		--default-handle-color: #ff0000;
+		--divider-width: 2px;
+		--divider-color: #ff0000;
+		--handle-opacity: 0.9;
+		width: 100%;
+		max-width: 100%;
+		margin: 0 auto;
+	}
 
-		</script>
+	/* Стили для изображений внутри слайдера сравнения */
+	img-comparison-slider img {
+		width: 100%;
+		height: auto; /* Автоматическая высота вместо 100% */
+		object-fit: contain; /* Без обрезки */
+		object-position: center;
+		display: block;
+	}
+
+	/* Стили для слайдера */
+	.swiper-container {
+		margin: 40px auto;
+		position: relative;
+		width: 100%;
+	}
+
+	.swiper {
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.swiper-slide {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: auto;
+		min-height: 400px; /* Минимальная высота для слайдов */
+	}
+
+	/* Стили для кастомизации стрелок и пагинации */
+	:root {
+		--swiper-theme-color: #ff0000 !important;
+		--swiper-navigation-color: #ff0000 !important;
+		--swiper-pagination-color: #ff0000 !important;
+	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		color: #ff0000 !important;
+		opacity: 0.8;
+		transition: opacity 0.3s;
+	}
+
+	.swiper-button-next:hover,
+	.swiper-button-prev:hover {
+		opacity: 1;
+	}
+
+	.swiper-pagination {
+		position: relative;
+		margin-top: 20px;
+	}
+
+    .swiper-pagination-bullet {
+        background-color: whitesmoke !important;
+    }
+
+	.swiper-pagination-bullet-active {
+		background-color: #ff0000 !important;
+	}
+</style>
+
+<style is:global>
+	/* Простое решение для предотвращения скрытия полосы прокрутки */
+	body {
+		overflow-y: auto !important;
+	}
+
+	/* Предотвращаем разное позиционирование изображений */
+	img-comparison-slider::part(first-image),
+	img-comparison-slider::part(second-image) {
+		width: 100%;
+		height: auto;
+		object-fit: contain; /* Без обрезки */
+		object-position: center;
+	}
+</style>
