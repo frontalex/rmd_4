@@ -2,6 +2,10 @@
   "name": "rmd-kicks",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
