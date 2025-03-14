@@ -17,6 +17,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // import image from "@astrojs/image";
 const SERVER_PORT = 3000;
+
 // the url to access your blog during local development
 const LOCALHOST_URL = `http://localhost:${SERVER_PORT}`;
 // the url to access your blog after deploying it somewhere (Eg. Netlify)
@@ -32,6 +33,11 @@ if (isBuild) {
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    ssr: {
+      noExternal: ['@astrojs/prism']
+    }
+  },
   // Удалить experimental: { assets: true } - может вызывать проблемы
   // experimental: {
   //   assets: true

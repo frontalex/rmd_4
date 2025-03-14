@@ -6,19 +6,13 @@ Blogster is a collection of beautiful, accessible and performant blog templates 
 
 Check out the demo here - [Blogster bubblegum template](https://blogster-bubblegum.netlify.app).
 
-## Bubblegum Template
+## Features
 
-A beautiful, performant and accessible theme built with [Tailwind](https://tailwindcss.com).
-
-- **Fast**. Fast by default. Astro websites are engineered to be fast and load before you could blink, even when not cached.
-- **Dark mode**. All themes have light/dark mode built-in.
-- **Mobile first**. Responsive and loads fast in all devices.
-- **Accessible**. A well thought out semantic and accessible content.
-- **Perfect lighthouse score.** 100 across the board.
-- **Easy content authoring**. Author content using markdown (`.md`) from your code editor or directly in GitHub.
-- **Extended markdown with [Markdoc](https://markdoc.dev).** Type-safe custom components like YouTube embed, Twitter embed (or anything you want really) in your markdown (`.md`) files.
-- **RSS feed**. Your blog has an RSS feed setup that can be accessed at `/rss.xml`.
-- **SEO**. All pages are setup with all the SEO you might need.
+- **Modern UI**. A clean, readable interface with dark/light mode support.
+- **MDX support**. Write components directly in your content.
+- **SEO ready**. Full Open Graph and Twitter Cards support.
+- **Fast**. 100/100 Lighthouse performance score.
+- **Mobile-friendly**. Responsive design that works on all devices.
 
 ## How do I add content?
 
