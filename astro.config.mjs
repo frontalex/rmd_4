@@ -44,7 +44,6 @@ export default defineConfig({
   integrations: [
     sitemap(),
     tailwind({
-      // Простая конфигурация без сложностей
       applyBaseStyles: false
     })
     // Удаляем tailwind интеграцию и настраиваем вручную
