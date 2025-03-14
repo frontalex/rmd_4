@@ -67,7 +67,7 @@ for (let i = 1; i <= 8; i++) {
 			// Активация сразу при загрузке
 			slider.setAttribute('active', '');
 			slider.setAttribute('hover', '');
-			
+
 			// Активация при касании для поддержания состояния
 			slider.addEventListener('touchstart', (e) => {
 				const rect = slider.getBoundingClientRect();
@@ -197,12 +197,16 @@ for (let i = 1; i <= 8; i++) {
 		margin-top: 20px;
 	}
 
-    .swiper-pagination-bullet {
-        background-color: whitesmoke !important;
-    }
+	/* Стили для неактивных точек в светлой теме */
+	.swiper-pagination-bullet {
+		background-color: #a0a0a0 !important;
+		opacity: 0.6;
+	}
 
+	/* Стили для активной точки в обеих темах */
 	.swiper-pagination-bullet-active {
 		background-color: #ff0000 !important;
+		opacity: 1;
 	}
 </style>
 
@@ -219,5 +223,17 @@ for (let i = 1; i <= 8; i++) {
 		height: auto;
 		object-fit: contain; /* Без обрезки */
 		object-position: center;
+	}
+
+	/* Стили для точек в тёмной теме */
+	html.dark .swiper-pagination-bullet {
+		background-color: #666666 !important;
+		opacity: 0.8;
+	}
+
+	/* Активная точка в тёмной теме */
+	html.dark .swiper-pagination-bullet-active {
+		background-color: #ff0000 !important;
+		opacity: 1;
 	}
 </style>

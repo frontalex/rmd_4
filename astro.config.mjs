@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import cloudflare from '@astrojs/cloudflare';
 
 /*
   We are doing some URL mumbo jumbo here to tell Astro what the URL of your website will be.
@@ -35,7 +36,7 @@ export default defineConfig({
   // experimental: {
   //   assets: true
   // },
-  // output: "hybrid",
+  output: "server",
   server: {
     port: SERVER_PORT
   },
@@ -49,5 +50,6 @@ export default defineConfig({
     // Удаляем tailwind интеграцию и настраиваем вручную
   // image(),
   // astroSvgComnponents()
-]
+],
+adapter: cloudflare()
 });
